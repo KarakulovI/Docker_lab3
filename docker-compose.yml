@@ -1,0 +1,29 @@
+version: "2"
+networks:
+    mynetwork:
+services:
+    nginx:
+        build: ./nginx 
+        networks:
+            - mynetwork 
+        container_name: nginx
+        ports:
+            - "80:80"
+    web:
+        build: ./service1
+        networks:
+            - mynetwork 
+        container_name: web
+        expose:
+            - "8881"
+        ports:
+            - "8081:8881"
+    web1:
+        build: ./service1
+        networks:
+            - mynetwork 
+        container_name: web1
+        expose:
+            - "8881"
+        ports:
+            - "8082:8881"
